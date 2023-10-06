@@ -1,19 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {React, StrictMode} from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+
+import './index.scss';
 import App from './App';
-import BookDetail from './BookDetail';
+import Book from './BookDetail'
 
-ReactDOM.render(
-  <Router>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/book/:bookName" element={<BookDetail />} />
-    </Routes>
-  </Router>,
-  document.getElementById('root')
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    
+  },
+  {
+    path: '/:key/:keyId',
+    element: <Book />,
+    
+  }
+]);
+
+root.render(
+  <StrictMode>
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>  
+  </StrictMode>
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
