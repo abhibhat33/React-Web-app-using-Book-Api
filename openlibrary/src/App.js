@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import wretch from 'wretch';
-import { appPageData, appPageError, searchIsLoading } from './atomPage';
-import './App.Scss';
 import {
-  Button,
-  Search,
-  ContainedList,
-  ContainedListItem,
-  Grid,
-  Column,
+  Button, Search, ContainedList, Grid, Column,
 } from '@carbon/react';
+import { appPageData, appPageError, searchIsLoading } from './atomPage';
+import './App.scss';
 
-
-export default function App() {
+export default function App(){
   const [bookname, setBookname] = useState('');
   const [data, setData] = useRecoilState(appPageData);
   const [loading, setLoading] = useRecoilState(searchIsLoading);
@@ -22,20 +16,20 @@ export default function App() {
 
   let Items;
 
-  function handleChange(e) {
+  function handleChange(e){
     setBookname(e.target.value);
   }
 
-  function handleClick() {
+  function handleClick(){
     setLoading(true);
 
-    let encodedBookName = encodeURIComponent(bookname);
+    const encodedBookName = encodeURIComponent(bookname);
 
     wretch(`https://openlibrary.org/search.json?q=${encodedBookName}&limit=15`)
       .get()
       .json()
       .then((response) => {
-        setData(response); 
+        setData(response);
         setLoading(false);
       })
       .catch((err) => {
@@ -44,24 +38,24 @@ export default function App() {
       });
   }
 
-  if (data) {
-    if (data.docs && data.docs.length !== 0) {
+  if (data){
+    if (data.docs && data.docs.length !== 0){
       Items = data.docs.map((item) => (
         <div key={item.key} className="book-item">
           <p>
             <Link to={`${item.key}`} className="book-link">
               {item.title}
-            
-            <span className="book-author">
-              {item.author_name && item.author_name.length > 0
-                ? ` written by ${item.author_name[0]}`
-                : null}
-            </span>
-            <span className="book-year">
-              {item.first_publish_year
-                ? ` (${item.first_publish_year})`
-                : null}
-            </span>
+
+              <span className="book-author">
+                {item.author_name && item.author_name.length > 0
+                  ? ` written by ${item.author_name[0]}`
+                  : null}
+              </span>
+              <span className="book-year">
+                {item.first_publish_year
+                  ? ` (${item.first_publish_year})`
+                  : null}
+              </span>
             </Link>
           </p>
         </div>
@@ -85,11 +79,13 @@ export default function App() {
                 type="text"
                 placeholder="Search here"
                 value={bookname}
+                // eslint-disable-next-line react/jsx-no-bind
                 onChange={handleChange}
                 size="md"
-              ></Search>
+              />
             </Column>
             <Column lg={4} md={2} sm={3} className="SearchBar__button">
+              {/* eslint-disable-next-line react/jsx-no-bind */}
               <Button className="SearchButton" onClick={handleClick}>
                 Submit
               </Button>

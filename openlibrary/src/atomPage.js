@@ -1,16 +1,16 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const appPageData = atom({
-    key: "appPageData",
-    default: null
+  key:     'appPageData',
+  default: null
 });
 
 export const appPageError = atom({
-    key: "appPageError",
-    default: null
+  key:     'appPageError',
+  default: null
 });
 
 export const searchIsLoading = atom({
-    key: "searchIsLoading",
-    default: false
+  key:     'searchIsLoading',
+  default: false
 });

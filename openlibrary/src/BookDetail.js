@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import wretch from 'wretch';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
-import { placeholderImage } from './placeHolderUrl';
+import placeholderImage from './placeHolderUrl';
 
 export default function BookDetail(){
   const params = useParams();
