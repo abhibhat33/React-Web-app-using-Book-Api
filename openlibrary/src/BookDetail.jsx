@@ -11,7 +11,9 @@ export default function BookDetail(){
   const { keyId } = params;
 
   const [data, setData] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(null);
 
   let title; let bookDescription; let subjects; let
@@ -21,12 +23,12 @@ export default function BookDetail(){
     wretch(`https://openlibrary.org/${key}/${keyId}.json`)
       .get()
       .json()
-      .then((data) => {
-        setData(data);
+      .then((res) => {
+        setData(res);
         setLoading(false);
       })
-      .catch((error) => {
-        setError(`This is an HTTP error: The status is ${error.message}`);
+      .catch((e) => {
+        setError(`This is an HTTP error: The status is ${e.message}`);
         setLoading(false);
       });
   }, [key, keyId]);
@@ -84,7 +86,6 @@ export default function BookDetail(){
               src={coverUrl}
               alt="Book cover"
               height="300px"
-
               placeholderSrc={placeholderImage}
             />
           </div>
