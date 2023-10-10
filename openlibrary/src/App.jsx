@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import wretch from 'wretch';
-import {
-  Button, Search, ContainedList, Grid, Column,
-} from '@carbon/react';
+import * as s from '@carbon/react';
 import { appPageData, appPageError, searchIsLoading } from './atomPage';
 import './App.scss';
 
 export default function App(){
-  const [bookname, setBookname] = useState('');
+  const [bookcase, setBookname] = useState('');
   const [data, setData] = useRecoilState(appPageData);
   const [loading, setLoading] = useRecoilState(searchIsLoading);
   const [error, setError] = useRecoilState(appPageError);
@@ -23,9 +21,9 @@ export default function App(){
   function handleClick(){
     setLoading(true);
 
-    const encodedBookName = encodeURIComponent(bookname);
+    const encodedBookName = encodeURIComponent(bookcase);
 
-    wretch(`https://openlibrary.org/search.json?q=${encodedBookName}&limit=15`)
+    wretch(`https://openlibrary.org/search.json?q=${encodedBookName}&limit=8`)
       .get()
       .json()
       .then((response) => {
@@ -69,37 +67,30 @@ export default function App(){
 
   return (
     <div className="App">
-      <h1>Welcome</h1>
-      <h1>Search your book here👇</h1>
-      <Grid className="SearchBar" fullWidth>
-        <Column lg={16} md={10} sm={4} className="SearchBar_">
-          <Grid className="SearchBar__bar_button">
-            <Column lg={12} md={6} sm={4} className="SearchBar__bar">
-              <Search
-                type="text"
-                placeholder="Search here"
-                value={bookname}
-                // eslint-disable-next-line react/jsx-no-bind
-                onChange={handleChange}
-                size="md"
-              />
-            </Column>
-            <Column lg={4} md={2} sm={3} className="SearchBar__button">
-              {/* eslint-disable-next-line react/jsx-no-bind */}
-              <Button className="SearchButton" onClick={handleClick}>
-                Submit
-              </Button>
-            </Column>
-          </Grid>
-        </Column>
-        <Column lg={16} md={8} sm={4} className="SearchBar__list">
-          {loading && <div>Loading... Please wait</div>}
-          {error && (
-            <div>{`There is a problem fetching the post data - ${error}`}</div>
-          )}
-          {Items && <ContainedList>{Items}</ContainedList> }
-        </Column>
-      </Grid>
+      <h1>Search your book here</h1>
+      <s.Grid className="SearchBar" fullWidth>
+        <s.Column lg={12} md={8} sm={4} className="SearchBar_">
+          <s.Search
+            type="text"
+            placeholder="Search here"
+            value={bookcase}
+            onChange={handleChange}
+            size="md"
+          />
+        </s.Column>
+        <s.Column lg={4} md={4} sm={4} className="SearchBar__button">
+          <s.Button className="SearchButton" onClick={handleClick}>
+            Submit
+          </s.Button>
+        </s.Column>
+      </s.Grid>
+      <s.Column lg={16} md={8} sm={4} className="SearchBar__list">
+        {loading && <div>Loading... Please wait</div>}
+        {error && (
+          <div>{`There is a problem fetching data - ${error}`}</div>
+        )}
+        {Items && <s.ContainedList>{Items}</s.ContainedList>}
+      </s.Column>
     </div>
   );
 }

@@ -1,0 +1,22 @@
+@use '@carbon/react';
+@use '@carbon/react/scss/spacing' as *;
+
+.book-details {
+  display: flex;
+  flex-direction: column; 
+}
+
+.book-title {
+  font-size: 24px; 
+}
+
+.book-cover {
+  padding: $spacing-05; 
+}
+
+.Subjects,
+.Description,
+.header {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+}
