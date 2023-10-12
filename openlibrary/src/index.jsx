@@ -2,10 +2,9 @@ import { React, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-
-import './index.scss';
-import App from './App';
-import Book from './BookDetail';
+import './styles/index.scss';
+import App from './pages/App';
+import Book from './pages/BookDetail';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
