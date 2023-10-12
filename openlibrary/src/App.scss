@@ -5,59 +5,36 @@
   text-align: left;
   margin-top: 15px;
   margin-bottom: 20px;
-  padding: $spacing-04;
-  padding-bottom: 60%;
-  font-weight: 900;
+  padding: $spacing-04; 
 }
 
 .SearchBar {
   display: flex;
-  justify-content: flex-start;
-  margin-bottom: $spacing-04;
-  margin-top: $spacing-07;
-  text-align: left;
-  align-items: center;
-  font-size: larger;
+  justify-content: flex-start; 
+  margin-bottom: $spacing-04; 
 }
 
-.SearchBar__input {
-  flex: 1; 
+.SearchBar_ {
+  margin-right: $spacing-02; 
 }
 
 .SearchBar__button {
-  margin-left: $spacing-05;
-  color: #060606;
-  text-align: left;
-  size: 0cap;
+  margin-left: $spacing-01; 
+  color: #110f0f;
 }
 
 .SearchButton {
-  font-weight: 100;
-  text-align: left;
+  font-weight: bold;
 }
 
 .SearchBar__list {
-  margin-top: $spacing-02;
+  margin-top: $spacing-04; 
 }
 
 .book-item {
   margin-bottom: $spacing-02;
   padding: $spacing-05;
-  border: 1px solid #fcf8f8;
-  text-decoration: none; 
-  color: #000; 
-  display:flex;
-  align-items: center;
-  margin-top: $spacing-01;
-}
-
-.book-name {
-  font-size: 1.4rem; 
-  font-weight: 700;
-}
-
-.book-details {
-  margin-top: $spacing-01;
+  border: 1px solid #efe8e8; 
 }
 
 .no-books {
