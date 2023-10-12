@@ -39,24 +39,17 @@ export default function App(){
   if (data){
     if (data.docs && data.docs.length !== 0){
       Items = data.docs.map((item) => (
-        <div key={item.key} className="book-item">
-          <p>
-            <Link to={`${item.key}`} className="book-link">
-              {item.title}
-
-              <span className="book-author">
-                {item.author_name && item.author_name.length > 0
-                  ? ` written by ${item.author_name[0]}`
-                  : null}
-              </span>
-              <span className="book-year">
-                {item.first_publish_year
-                  ? ` (${item.first_publish_year})`
-                  : null}
-              </span>
-            </Link>
-          </p>
-        </div>
+        <Link to={`${item.key}`} key={item.key} className="book-item">
+          <div>
+            <p className="book-name">
+              <span>{item.title}</span>
+            </p>
+            <p className="book-details">
+              {item.author_name && item.author_name.length > 0 ? `by ${item.author_name[0]}` : null}
+              {item.first_publish_year ? ` (${item.first_publish_year})` : null}
+            </p>
+          </div>
+        </Link>
       ));
     } else {
       Items = <div className="no-books">No book found!</div>;
@@ -68,8 +61,8 @@ export default function App(){
   return (
     <div className="App">
       <h1>Search your book here</h1>
-      <s.Grid className="SearchBar" fullWidth>
-        <s.Column lg={12} md={8} sm={4} className="SearchBar_">
+      <div className="SearchBar">
+        <div className="SearchBar__input">
           <s.Search
             type="text"
             placeholder="Search here"
@@ -77,20 +70,18 @@ export default function App(){
             onChange={handleChange}
             size="md"
           />
-        </s.Column>
-        <s.Column lg={4} md={4} sm={4} className="SearchBar__button">
+        </div>
+        <div className="SearchBar__button">
           <s.Button className="SearchButton" onClick={handleClick}>
-            Submit
+            Search
           </s.Button>
-        </s.Column>
-      </s.Grid>
-      <s.Column lg={16} md={8} sm={4} className="SearchBar__list">
-        {loading && <div>Loading... Please wait</div>}
-        {error && (
-          <div>{`There is a problem fetching data - ${error}`}</div>
-        )}
+        </div>
+      </div>
+      <div className="SearchBar">
+        {loading && <div><h4>Loading... Please wait</h4></div>}
+        {error && <div>{`problem while fetching data  - ${error}`}</div>}
         {Items && <s.ContainedList>{Items}</s.ContainedList>}
-      </s.Column>
+      </div>
     </div>
   );
 }
