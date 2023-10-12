@@ -77,9 +77,9 @@ export default function App(){
           </s.Button>
         </div>
       </div>
-      <div className="SearchBar">
+      <div className="BookInfoContainer">
         {loading && <div><h4>Loading... Please wait</h4></div>}
-        {error && <div>{`problem while fetching data  - ${error}`}</div>}
+        {error && <div>{`Problem while fetching data - ${error}`}</div>}
         {Items && <s.ContainedList>{Items}</s.ContainedList>}
       </div>
     </div>

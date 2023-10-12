@@ -13,7 +13,7 @@ function processText(text){
   return withoutLinks;
 }
 
-export default function Book(){
+export default function BookDetail(){
   const params = useParams();
   const { key, keyId } = params;
   const [data, setData] = useState(null);
