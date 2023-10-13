@@ -82,7 +82,7 @@ export default function BookDetail(){
         <div className="BookPage">
           <Grid className="BookPage_info">
             <Column lg={12} md={4} sm={4} className="title_book">
-              {bookTitle}
+              <h1>{bookTitle}</h1>
             </Column>
             <Column lg={12} md={4} sm={4} className="author_book">
               {authorData.length > 0 && (
@@ -94,8 +94,10 @@ export default function BookDetail(){
               )}
             </Column>
           </Grid>
-          <h5>{subjects}</h5>
-          <h5>{bookDescription}</h5>
+
+          {subjects}
+          {bookDescription}
+
         </div>
       </Column>
     </Grid>

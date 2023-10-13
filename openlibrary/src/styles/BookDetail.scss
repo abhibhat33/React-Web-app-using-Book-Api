@@ -12,7 +12,6 @@
   margin-top: $spacing-03;
   margin-bottom: $spacing-02;
   color: black;
-  font-weight: bolder;
   margin-left: $spacing-01;
 }
 
@@ -28,13 +27,12 @@
   padding-top: $spacing-05;
   padding-bottom: $spacing-05;
   margin-left: $spacing-02;
-  border: 1px solid rgb(253, 253, 253);
+  max-width: 80%;
 }
 
 .BookPage__author {
   margin-top: $spacing-02;
   color: #403c3c; 
-  font-size:xx-small;
 }
 .book-description {
    //can add styling
@@ -45,6 +43,6 @@
 }
  
  .BookInfoContainer {
-  width: 100%;
-  max-width: 100%;
+  width: 70%;
+  max-width: 70%;
  }

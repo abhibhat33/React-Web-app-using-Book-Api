@@ -60,28 +60,32 @@ export default function App(){
 
   return (
     <div className="App">
-      <h1>Search your book here</h1>
-      <div className="SearchBar">
-        <div className="SearchBar__input">
-          <s.Search
-            type="text"
-            placeholder="Search here"
-            value={bookcase}
-            onChange={handleChange}
-            size="md"
-          />
-        </div>
-        <div className="SearchBar__button">
-          <s.Button className="SearchButton" onClick={handleClick}>
-            Search
-          </s.Button>
-        </div>
-      </div>
-      <div className="BookInfoContainer">
-        {loading && <div><h4>Loading... Please wait</h4></div>}
-        {error && <div>{`Problem while fetching data - ${error}`}</div>}
-        {Items && <s.ContainedList>{Items}</s.ContainedList>}
-      </div>
+      <s.Grid fullWidth>
+        <s.Column lg={12} md={12} sm={12}>
+          <h1>Search your book here</h1>
+          <div className="SearchBar">
+            <div className="SearchBar__input">
+              <s.Search
+                type="text"
+                placeholder="Search here"
+                value={bookcase}
+                onChange={handleChange}
+                size="md"
+              />
+            </div>
+            <div className="SearchBar__button">
+              <s.Button className="SearchButton" onClick={handleClick}>
+                Search
+              </s.Button>
+            </div>
+          </div>
+          <div className="BookInfoContainer">
+            {loading && <div><h4>Loading... Please wait</h4></div>}
+            {error && <div>{`Problem while fetching data - ${error}`}</div>}
+            {Items && <s.ContainedList>{Items}</s.ContainedList>}
+          </div>
+        </s.Column>
+      </s.Grid>
     </div>
   );
 }
