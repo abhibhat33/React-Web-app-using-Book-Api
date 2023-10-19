@@ -40,7 +40,7 @@ export default function App(){
     if (data.docs && data.docs.length !== 0){
       Items = data.docs.map((item) => (
         <Link to={`${item.key}`} key={item.key} className="book-item">
-          <div>
+          <div className="book-item-content">
             <p className="book-name">
               <span>{item.title}</span>
             </p>
@@ -61,31 +61,70 @@ export default function App(){
   return (
     <div className="App">
       <s.Grid fullWidth>
-        <s.Column lg={12} md={12} sm={12}>
-          <h1>Search your book here</h1>
-          <div className="SearchBar">
-            <div className="SearchBar__input">
-              <s.Search
-                type="text"
-                placeholder="Search here"
-                value={bookcase}
-                onChange={handleChange}
-                size="md"
-              />
-            </div>
-            <div className="SearchBar__button">
-              <s.Button className="SearchButton" onClick={handleClick}>
-                Search
-              </s.Button>
-            </div>
-          </div>
-          <div className="BookInfoContainer">
+        <s.Column lg={16} md={8} sm={4}>
+          <s.Column lg={2} md={1} sm={1}>
+            <h1>Search your book here</h1>
+          </s.Column>
+          <s.Column lg={6} md={4} sm={2} className="SearchBar">
+            <s.Grid className="Search" narrow>
+              <s.Column lg={4} md={3} sm={2} className="SearchBar__input">
+                <s.Search
+                  type="text"
+                  placeholder="Search here"
+                  value={bookcase}
+                  onChange={handleChange}
+                  size="md"
+                />
+              </s.Column>
+              <s.Column lg={2} md={1} sm={2} className="SearchBar__button">
+                <s.Button className="SearchButton" onClick={handleClick} size="md">
+                  Search
+                </s.Button>
+              </s.Column>
+            </s.Grid>
+          </s.Column>
+          <s.Column lg={8} md={3} sm={2} className="BookInfoContainer" style={{ marginRight: '20px' }} narrow>
             {loading && <div><h4>Loading... Please wait</h4></div>}
             {error && <div>{`Problem while fetching data - ${error}`}</div>}
-            {Items && <s.ContainedList>{Items}</s.ContainedList>}
-          </div>
+            {Items && <s.ContainedList className="BookItems">{Items}</s.ContainedList>}
+          </s.Column>
         </s.Column>
       </s.Grid>
     </div>
   );
 }
+
+//   return (
+//     <div className="App">
+//       <s.Grid fullWidth>
+//         <s.Column lg={16} md={8} sm={4}>
+//           <h1>Search your book here</h1>
+//         </s.Column>
+//         <s.Column lg={14} md={8} sm={8} className="SearchBar">
+//           <s.Grid className="Sear" narrow>
+//             <s.Column lg={10} md={6} sm={6} className="SearchBar__input">
+//               <s.Search
+//                 type="text"
+//                 placeholder="Search here"
+//                 value={bookcase}
+//                 onChange={handleChange}
+//                 size="md"
+//               />
+//             </s.Column>
+//             <s.Column lg={4} md={2} sm={2} className="SearchBar__button">
+//               <s.Button className="SearchButton" onClick={handleClick} size="md">
+//                 Search
+//               </s.Button>
+//             </s.Column>
+//           </s.Grid>
+//         </s.Column>
+//         <s.Column lg={12} md={8} sm={4} className="BookInfoContainer">
+//           {' '}
+//           {loading && <div><h4>Loading... Please wait</h4></div>}
+//           {error && <div>{`Problem while fetching data - ${error}`}</div>}
+//           {Items && <s.ContainedList className="BookItems">{Items}</s.ContainedList>}
+//         </s.Column>
+//       </s.Grid>
+//     </div>
+//   );
+// }

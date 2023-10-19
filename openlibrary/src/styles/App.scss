@@ -2,34 +2,23 @@
 @use '@carbon/react/scss/spacing' as *;
 
 .App {
-  text-align: left;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  margin-top: $spacing-03;
+  margin-bottom: $spacing-03;
   padding: $spacing-04;
-  padding-bottom: 60%;
 }
 
 .SearchBar {
-  display: flex;
-  justify-content: flex-start;
   margin-bottom: $spacing-04;
   margin-top: $spacing-07;
+  padding-left: $spacing-05;
 }
 
 .SearchBar__input {
-  flex: 1; 
+  margin-left: $spacing-05;
 }
 
 .SearchBar__button {
-  margin-left: $spacing-05;
-  color: #060606;
-  text-align: left;
-  size: 0cap;
-}
-
-.SearchButton {
-  font-weight: 100;
-  text-align: left;
+  margin-left: $spacing-02;
 }
 
 .SearchBar__list {
@@ -37,26 +26,32 @@
 }
 
 .book-item {
-  margin-bottom: $spacing-02;
+  margin-bottom: $spacing-03;
   padding: $spacing-05;
-  border: 1px solid #fcf8f8;
-  text-decoration: none; 
-  color: #000; 
-  display:flex;
-  align-items: center;
-  margin-top: $spacing-01;
+  margin-top: $spacing-05;
+  text-decoration: none;
+  color: black;
+  margin-left: 10%;
 }
 
 .book-name {
-  font-size: 1.4rem; 
-  font-weight: 700;
+  font-weight: bolder;
 }
 
 .book-details {
   margin-top: $spacing-01;
 }
 
-.no-books {
-  margin-bottom: $spacing-02;
+.BookItems {
+  margin-top: $spacing-02;
+  margin-bottom: $spacing-07;
+}
+
+.BookInfoContainer {
+  padding-right: 20%;
+}
+
+.book-item-content {
   padding: $spacing-02;
+  margin-bottom: $spacing-04;
 }

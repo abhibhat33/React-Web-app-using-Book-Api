@@ -61,45 +61,48 @@ export default function BookDetail(){
       <h4>Subjects</h4>
       <p className="book-subjects">
         {processText(
-          data.subjects
-            .map((subject) => subject.replace(/\d\d\d\d-\d\d-\d\d/g, ''))
-            .join(', ')
+          data.subjects.map((subject) => subject.replace(/\d\d\d\d-\d\d-\d\d/g, '')).join(', ')
         )}
       </p>
     </div>
   ) : null;
 
   const imageSrc = data && data.covers && data.covers.length > 0 ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg` : null;
-
   return (
-    <Grid fullWidth>
-      <Column lg={4} md={4} sm={4} className="book-cover">
-        {imageSrc && (
-          <LazyLoadImage effect="opacity" src={imageSrc} alt="Book cover" height="450px" placeholderSrc={<PlaceholderImage />} />
-        )}
-      </Column>
-      <Column lg={12} md={12} sm={12} className="book-details">
-        <div className="BookPage">
-          <Grid className="BookPage_info">
-            <Column lg={12} md={4} sm={4} className="title_book">
-              <h1>{bookTitle}</h1>
-            </Column>
-            <Column lg={12} md={4} sm={4} className="author_book">
-              {authorData.length > 0 && (
-                <h3>
-                  by
-                  {' '}
-                  {authorData.join(', ')}
-                </h3>
+    <div>
+      <Grid>
+        <Column lg={14} md={7} sm={4} className="b">
+          <Grid>
+            <Column lg={4} md={2} sm={2} className="book-cover">
+              {imageSrc && (
+              <LazyLoadImage effect="opacity" src={imageSrc} alt="Book cover" height="auto" width="100%" placeholderSrc={<PlaceholderImage />} />
               )}
+            </Column>
+            <Column lg={10} md={5} sm={4} className="book-details">
+              <div className="BookPage">
+                <div className="BookPage_info">
+                  <div className="title_book">{bookTitle}</div>
+                  <div className="author_book">
+                    {authorData.length > 0 && (
+                    <h3>
+                      by
+                      {' '}
+                      {authorData.join(', ')}
+                    </h3>
+                    )}
+                  </div>
+                </div>
+
+                {subjects}
+
+                {bookDescription}
+
+              </div>
             </Column>
           </Grid>
 
-          {subjects}
-          {bookDescription}
-
-        </div>
-      </Column>
-    </Grid>
+        </Column>
+      </Grid>
+    </div>
   );
 }

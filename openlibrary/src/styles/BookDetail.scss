@@ -1,48 +1,45 @@
 @use '@carbon/react';
 @use '@carbon/react/scss/spacing' as *;
 
-.book-details {
-  display: flex;
-  flex-direction: column; 
-}
 
 .book-title {
-  font-size: 50px; 
-  font-style: oblique;
-  margin-top: $spacing-03;
-  margin-bottom: $spacing-02;
-  color: black;
-  margin-left: $spacing-01;
+  margin-top: $spacing-05;
+ margin-bottom: $spacing-05;
+ margin-left: $spacing-05;
+}
+
+.author_book {
+   margin-left: $spacing-05;
 }
 
 .book-cover {
-  margin: $spacing-05; 
-  margin-left: $spacing-01;
-  margin-top: $spacing-06;
+   margin-left: $spacing-01;
+   margin-top: $spacing-06;
+   max-height: 450px;
+   object-fit: cover !important;
+   max-width: 100%;
 }
 
 .Subjects,
 .Description,
 .header {
-  padding-top: $spacing-05;
-  padding-bottom: $spacing-05;
-  margin-left: $spacing-02;
-  max-width: 80%;
+   margin-top: $spacing-05;
+   margin-bottom: $spacing-05;
+   margin-left: $spacing-05;
+
 }
 
-.BookPage__author {
-  margin-top: $spacing-02;
-  color: #403c3c; 
-}
+
 .book-description {
-   //can add styling
+   margin-top: $spacing-04
 }
 
 .book-subjects {
- //can add some styling
+ margin-top: $spacing-04;
+ 
 }
  
- .BookInfoContainer {
-  width: 70%;
-  max-width: 70%;
- }
+    // /* max-width: 100% !important; */
+    // height: auto !important;
+    // object-fit: cover !important;
+    // width: 100%;
