@@ -1,45 +1,48 @@
-@use '@carbon/react';
 @use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
 
-
-.book-title {
-  margin-top: $spacing-05;
- margin-bottom: $spacing-05;
- margin-left: $spacing-05;
+.BookPage_title {
+//   margin-top: $spacing-05;
+ margin-bottom: $spacing-03;
+//  margin-left: $spacing-07;
 }
-
-.author_book {
-   margin-left: $spacing-05;
-}
-
-.book-cover {
-   margin-left: $spacing-01;
-   margin-top: $spacing-06;
-   max-height: 450px;
-   object-fit: cover !important;
+.Book-src{
    max-width: 100%;
+   height: auto;
+   object-fit: cover !important;
+   margin-top: $spacing-06;
+}
+.author_book {
+   // margin-left: $spacing-07;
+   margin-bottom: $spacing-06;
 }
 
-.Subjects,
-.Description,
-.header {
-   margin-top: $spacing-05;
-   margin-bottom: $spacing-05;
-   margin-left: $spacing-05;
+// .book-cover {
+//    //  padding-left: $spacing-03;
+//     margin-left: $spacing-03;
+//    margin-top: $spacing-06;
+//     max-height: 450px;
+//    object-fit: cover !important;
+//    max-width: 100%;
+// }
 
-}
 
-
-.book-description {
-   margin-top: $spacing-04
-}
+// .Description {
+//    margin-bottom: $spacing-06;
+//    // margin-left: $spacing-07;
+// }
 
 .book-subjects {
- margin-top: $spacing-04;
+ margin-bottom: $spacing-06;
+//  margin-left: $spacing-07;
  
 }
  
-    // /* max-width: 100% !important; */
-    // height: auto !important;
-    // object-fit: cover !important;
-    // width: 100%;
+ .BookPage{
+   margin-top: $spacing-05;
+   margin-bottom: $spacing-04;
+ 
+ }
+.Book__{
+   margin-left: 0;
+}
