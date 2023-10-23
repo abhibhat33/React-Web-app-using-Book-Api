@@ -8,12 +8,6 @@ import Markdown from 'react-markdown';
 import PlaceholderImage from '../placeHolderUrl';
 import '../styles/BookDetail.scss';
 
-function processText(text){
-  const englishText = text.replace(/[\u0080-\uFFFF]/g, ' ');
-  const withoutLinks = englishText.replace(/https?:\/\/\S+/g, '');
-  return withoutLinks;
-}
-
 export default function BookDetail(){
   const params = useParams();
   const { key, keyId } = params;
@@ -45,12 +39,9 @@ export default function BookDetail(){
   }, [data]);
 
   const bookTitle = data && data.title ? <h1 className="book-title">{data.title}</h1> : null;
-  const bookDescription = data && data.description !== undefined
-    ? processText(data.description.value || data.description)
-    : null;
-  const subjects =    data && data.subjects !== undefined
-    ? data.subjects.map((subject) => subject.replace(/\d\d\d\d-\d\d-\d\d/g, '')).join(', ')
-    : null;
+  const bookDescription = data && data.description
+  !== undefined ? data.description.value || data.description : null;
+  const subjects = data && data.subjects !== undefined ? data.subjects.join(', ') : null;
 
   const imageSrc = data && data.covers && data.covers.length > 0 ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg` : null;
 
@@ -60,7 +51,7 @@ export default function BookDetail(){
         <Grid className="Book__">
           <Column lg={4} md={2} sm={1} className="book-cover">
             {imageSrc && (
-            <LazyLoadImage effect="opacity" src={imageSrc} className="Book-src" alt="Book cover" height="auto" width="100%" placeholderSrc={<PlaceholderImage />} />
+              <LazyLoadImage effect="opacity" src={imageSrc} className="Book-src" alt="Book cover" height="auto" width="100%" placeholderSrc={<PlaceholderImage />} />
             )}
           </Column>
           <Column lg={10} md={5} sm={4} className="book-details">
@@ -82,9 +73,7 @@ export default function BookDetail(){
                   <div>
                     <h4>Subjects</h4>
                     <p>
-                      <Markdown>
-                        {subjects.length > 500 ? `${subjects.slice(0, 500)}...` : subjects}
-                      </Markdown>
+                      {subjects.length > 500 ? `${subjects.slice(0, 500)}...` : subjects}
                     </p>
                   </div>
                 )}
@@ -95,7 +84,7 @@ export default function BookDetail(){
                     <h4>Description</h4>
                     <p>
                       <Markdown>
-                        {bookDescription && bookDescription.length > 500 ? `${bookDescription.slice(0, 500)}...` : bookDescription}
+                        {bookDescription}
                       </Markdown>
                     </p>
                   </div>
@@ -108,58 +97,3 @@ export default function BookDetail(){
     </Grid>
   );
 }
-
-//   return (
-//     <div>
-//       <Grid className="BookPage" fullWidth>
-//         <Column lg={14} md={7} sm={4} className="b">
-//           <Grid>
-//             <Column lg={4} md={2} sm={1} className="book-cover">
-//               {imageSrc && (
-//                 <LazyLoadImage effect="opacity" src={imageSrc}
-// alt="Book cover" height="auto" width="100%" placeholderSrc={<PlaceholderImage />} />
-//               )}
-//             </Column>
-//             <Column lg={10} md={5} sm={4} className="book-details">
-//               <div className="BookPage">
-//                 <div className="BookPage_info">
-//                   <div className="title_book">{bookTitle}</div>
-//                   <div className="author_book">
-//                     {authorData.length > 0 && (
-//                       <h3>
-//                         by
-//                         {' '}
-//                         {authorData.join(', ')}
-//                       </h3>
-//                     )}
-//                   </div>
-//                 </div>
-//                 {subjects && (
-//                   <div className="Subjects">
-//                     <h4>Subjects</h4>
-//                     <p className="book-subjects">
-//                       <Markdown>
-//                         {subjects.length > 500 ? `${subjects.slice(0, 500)}...` : subjects}
-//                       </Markdown>
-//                     </p>
-//                   </div>
-//                 )}
-//                 {bookDescription && (
-//                   <div className="Description">
-//                     <h4>Description</h4>
-//                     <p>
-//                       <Markdown>
-//                         {bookDescription && bookDescription.length > 500 ?
-// `${bookDescription.slice(0, 500)}...` : bookDescription}
-//                       </Markdown>
-//                     </p>
-//                   </div>
-//                 )}
-//               </div>
-//             </Column>
-//           </Grid>
-//         </Column>
-//       </Grid>
-//     </div>
-//   );
-// }

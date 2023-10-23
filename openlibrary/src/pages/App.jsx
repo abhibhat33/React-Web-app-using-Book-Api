@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import wretch from 'wretch';
-import * as s from '@carbon/react';
+import {
+  Loading, Grid, Column, ContainedList, Search, Button
+} from '@carbon/react';
 import { appPageData, appPageError, searchIsLoading } from '../atomPage';
 import '../styles/App.scss';
 
@@ -60,71 +62,43 @@ export default function App(){
 
   return (
     <div className="App">
-      <s.Grid fullWidth>
-        <s.Column lg={16} md={8} sm={4}>
-          <s.Column lg={2} md={1} sm={1}>
+      <Grid fullWidth>
+        <Column lg={16} md={8} sm={4}>
+          <Column lg={2} md={1} sm={1}>
             <h1>Search your book here</h1>
-          </s.Column>
-          <s.Column lg={6} md={4} sm={2} className="SearchBar">
-            <s.Grid className="Search" narrow>
-              <s.Column lg={4} md={3} sm={2} className="SearchBar__input">
-                <s.Search
+          </Column>
+          <Column lg={6} md={4} sm={2} className="SearchBar">
+            <Grid className="Search" narrow>
+              <Column lg={4} md={3} sm={2} className="SearchBar__input">
+                <Search
                   type="text"
                   placeholder="Search here"
                   value={bookcase}
+                  // eslint-disable-next-line react/jsx-no-bind
                   onChange={handleChange}
                   size="md"
                 />
-              </s.Column>
-              <s.Column lg={2} md={1} sm={2} className="SearchBar__button">
-                <s.Button className="SearchButton" onClick={handleClick} size="md">
-                  Search
-                </s.Button>
-              </s.Column>
-            </s.Grid>
-          </s.Column>
-          <s.Column lg={8} md={3} sm={2} className="BookInfoContainer" style={{ marginRight: '20px' }} narrow>
-            {loading && <div><h4>Loading... Please wait</h4></div>}
+              </Column>
+              <Column lg={2} md={1} sm={2} className="SearchBar__button">
+                <Button
+                  className="SearchButton"
+                  // eslint-disable-next-line react/jsx-no-bind
+                  onClick={handleClick}
+                  size="md"
+                  disabled={loading}
+                >
+                  {loading ? 'Loading...' : 'Search'}
+                </Button>
+                {loading && <Loading withOverlay={false} small />}
+              </Column>
+            </Grid>
+          </Column>
+          <Column lg={8} md={3} sm={2} className="BookInfoContainer" style={{ marginRight: '20px' }} narrow>
             {error && <div>{`Problem while fetching data - ${error}`}</div>}
-            {Items && <s.ContainedList className="BookItems">{Items}</s.ContainedList>}
-          </s.Column>
-        </s.Column>
-      </s.Grid>
+            {!loading && Items && <ContainedList className="BookItems">{Items}</ContainedList>}
+          </Column>
+        </Column>
+      </Grid>
     </div>
   );
 }
-
-//   return (
-//     <div className="App">
-//       <s.Grid fullWidth>
-//         <s.Column lg={16} md={8} sm={4}>
-//           <h1>Search your book here</h1>
-//         </s.Column>
-//         <s.Column lg={14} md={8} sm={8} className="SearchBar">
-//           <s.Grid className="Sear" narrow>
-//             <s.Column lg={10} md={6} sm={6} className="SearchBar__input">
-//               <s.Search
-//                 type="text"
-//                 placeholder="Search here"
-//                 value={bookcase}
-//                 onChange={handleChange}
-//                 size="md"
-//               />
-//             </s.Column>
-//             <s.Column lg={4} md={2} sm={2} className="SearchBar__button">
-//               <s.Button className="SearchButton" onClick={handleClick} size="md">
-//                 Search
-//               </s.Button>
-//             </s.Column>
-//           </s.Grid>
-//         </s.Column>
-//         <s.Column lg={12} md={8} sm={4} className="BookInfoContainer">
-//           {' '}
-//           {loading && <div><h4>Loading... Please wait</h4></div>}
-//           {error && <div>{`Problem while fetching data - ${error}`}</div>}
-//           {Items && <s.ContainedList className="BookItems">{Items}</s.ContainedList>}
-//         </s.Column>
-//       </s.Grid>
-//     </div>
-//   );
-// }
