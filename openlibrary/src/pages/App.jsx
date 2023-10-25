@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import wretch from 'wretch';
 import {
-  Loading, Grid, Column, ContainedList, Search, Button
+  Grid, Column, ContainedList, Search, Button
 } from '@carbon/react';
 import { appPageData, appPageError, searchIsLoading } from '../atomPage';
 import '../styles/App.scss';
@@ -87,9 +87,8 @@ export default function App(){
                   size="md"
                   disabled={loading}
                 >
-                  {loading ? 'Loading...' : 'Search'}
+                  {loading ? 'Searching...' : 'Search'}
                 </Button>
-                {loading && <Loading withOverlay={false} small />}
               </Column>
             </Grid>
           </Column>
